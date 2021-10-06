@@ -71,7 +71,7 @@
         "stylelint": "^13.8.0",
         "stylelint-config-recommended-scss": "^3.3.0",
         "stylelint-scss": "^3.18.0",
-        "typescript": "^3.9.7",
+        "typescript": "^3.9.10",
         "webpack": "^4.44.2",
         "webpack-bundle-analyzer": "^4.4.1",
         "webpack-cli": "^4.7.0"
