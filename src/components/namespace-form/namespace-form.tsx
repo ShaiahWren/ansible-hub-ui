@@ -17,7 +17,7 @@ import {
   AlertType,
 } from 'src/components';
 import { NamespaceType } from 'src/api';
-import { ErrorMessagesType } from 'src/utilities';
+import { errorMessage, ErrorMessagesType } from 'src/utilities';
 
 interface IProps {
   namespace: NamespaceType;
@@ -115,18 +115,19 @@ export class NamespaceForm extends React.Component<IProps, IState> {
                 newNS.groups = g;
                 this.props.updateNamespace(newNS);
               }}
-              onError={(err) =>
+              onError={(err) => {
+                const { status, statusTask } = err.response;
                 this.setState({
                   formErrors: {
                     ...this.state.formErrors,
                     groups: {
                       title: t`Error loading groups.`,
-                      description: err,
+                      description: errorMessage(status, statusTask),
                       variant: 'danger',
                     },
                   },
-                })
-              }
+                });
+              }}
             ></ObjectPermissionField>
           )}
         </FormGroup>

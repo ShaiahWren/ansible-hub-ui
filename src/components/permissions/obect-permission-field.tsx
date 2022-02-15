@@ -19,7 +19,7 @@ interface IProps {
   setGroups: (groups: GroupObjectPermissionType[]) => void;
   isDisabled?: boolean;
   menuAppendTo?: 'parent' | 'inline';
-  onError?: (error: string) => void;
+  onError?: (error: any) => void;
 }
 
 interface IState {

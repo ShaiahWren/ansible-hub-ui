@@ -29,6 +29,7 @@ import {
   ExecutionEnvironmentRemoteAPI,
 } from 'src/api';
 import { Constants } from 'src/constants';
+import { errorMessage } from 'src/utilities';
 
 interface IProps {
   name: string;
@@ -404,18 +405,19 @@ export class RepositoryForm extends React.Component<IProps, IState> {
                     'container.change_containernamespace',
                   )
                 }
-                onError={(err) =>
+                onError={(err) => {
+                  const { status, statusTask } = err.response;
                   this.setState({
                     formErrors: {
                       ...this.state.formErrors,
                       groups: {
                         title: t`Error loading groups.`,
-                        description: err,
+                        description: errorMessage(status, statusTask),
                         variant: 'danger',
                       },
                     },
-                  })
-                }
+                  });
+                }}
               ></ObjectPermissionField>
               {!!formError &&
                 formError.length > 0 &&
